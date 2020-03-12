@@ -68,6 +68,7 @@ $data = [
         'date' => "February 12, 2018"
     ],
 ];
+$title = "Blog";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +79,7 @@ $data = [
 
     <!-- favicon icon -->
 
-    <title>Blog</title>
+    <title> <?=$title?> </title>
 
     <!-- common css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
