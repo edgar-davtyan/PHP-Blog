@@ -9,8 +9,8 @@ require('templates/header.php');
 if ($page == "") {
     require('templates/home.php');
 } else {
-    if (file_exists('templates/$page.php')) {
-        require('templates/$page.php');
+    if (file_exists("templates/$page.php")) {
+        require("templates/$page.php");
     } else {
         require('templates/home.php');
     }
