@@ -1250,7 +1250,7 @@ blog css
 
 .leave-comment input, .leave-comment textarea {
     background-color: #FAFAFA;
-    color: #999999;
+    color: #000000;
     border-radius: 0;
     font-size: 14px;
     line-height: 28px;
@@ -1641,4 +1641,15 @@ img.profile-image
     width: 50%;
     margin: 0px auto 20px;
     display: block;
+}
+.warning-message-reg{
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+}
+.warning-message{
+    color: red;
+}
+.text-success{
+    color:  green;
 }
