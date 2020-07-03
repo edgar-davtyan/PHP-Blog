@@ -132,6 +132,7 @@ $title = "Home";
                     if ($isAutch) {
                         ?>
                         <li><a href="?p=profile">My profile</a></li>
+                        <li><a href="?p=logout">Log Out</a></li>
                         <?php
                     } else {
                         ?>
