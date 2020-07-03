@@ -2,8 +2,6 @@
 
 function validateLogin()
 {
-    $login = "edgar.davtyan.01@test.ru";
-    $pass = '$2y$10$lBYIcJFnpif8xn3wdNKCuuRThcRqadir6scGEPr4pBJAf6JYQ5jzy';
     $date = [
         "email" => [
             "value" => "",
@@ -30,11 +28,17 @@ function validateLogin()
     if (empty($_POST["password"])) {
         $date["password"]["error-message"] = "Password is required";
     } else {
-        if ((empty($date['email']['error-message'])) && $date['email']['value'] == $login && password_verify($_POST['password'], $pass)) {
-            setcookie("isLoggedIn", true, strtotime("+2 days"));
-            header("Location:?p=Profile");
+        $userDate = mysqli_fetch_all(getUserByEmail($date["email"]["value"]), MYSQLI_ASSOC);
+        if (count($userDate) === 0) {
+            $date["authorization"]["error-message"] = "No such user with given email";
         } else {
-            $date['authorization']['error-message'] = "Email or Password is not correct";
+            if (password_verify($_POST["password"], $userDate[0]["password"])) {
+                setcookie("isLoggedIn", true, strtotime("+2 days"));
+                $_SESSION["userID"] = $userDate[0]["id"];
+                header("Location:?p=Profile");
+            }else{
+                $date["authorization"]["error-message"] = "Email or Password is not correct";
+            }
         }
     }
     return $date;
