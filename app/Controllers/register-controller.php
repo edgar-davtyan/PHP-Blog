@@ -13,6 +13,9 @@ function validateRegister()
         "password" => [
             "value" => "",
             "error-message" => "",
+        ],
+        "authorization" => [
+            "error-message" => "",
         ]
     ];
     if (empty($_POST)) {
@@ -28,13 +31,13 @@ function validateRegister()
         $date['email']['error-message'] = "Email is required";
     } else {
         $date['email']['value'] = strip_tags($_POST["email"]);
-        if (!filter_var($_POST['email'] , FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $date["email"]["error-message"] = "Email is not correct";
         }
     }
     if (empty($_POST["password"])) {
         $date['password']["error-message"] = "Password is required";
-    }else{
+    } else {
         $date["password"]["value"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
     }
     return $date;
@@ -45,7 +48,7 @@ function areThereErrors($date)
     if (empty($_POST)) {
         return true;
     }
-    foreach ($date  as $info) {
+    foreach ($date as $info) {
         if (strlen($info["error-message"]) > 0) {
             return true;
         }
@@ -55,6 +58,16 @@ function areThereErrors($date)
 
 $date = validateRegister();
 
-if (!areThereErrors($date)){
-    addNewUsers($date["name"]["value"],$date["email"]["value"],$date["password"]["value"]);
+if (!areThereErrors($date)) {
+    $res = addNewUsers($date["name"]["value"], $date["email"]["value"], $date["password"]["value"]);
+    print_r($res);
+    if (!$res) {
+        $err = mysqli_error($conn);
+        var_dump($err);
+        if ($err == "Duplicate entry '".$date["email"]["value"]."' for key 'email'") {
+            $date["authorization"]["error-message"] = "User with email " . $date["email"]["value"] . " already exist.";
+        }
+    }else{
+        header("Location:?p=login");
+    }
 }
