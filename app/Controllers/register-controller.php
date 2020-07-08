@@ -63,7 +63,6 @@ if (!areThereErrors($date)) {
     print_r($res);
     if (!$res) {
         $err = mysqli_error($conn);
-        var_dump($err);
         if ($err == "Duplicate entry '".$date["email"]["value"]."' for key 'email'") {
             $date["authorization"]["error-message"] = "User with email " . $date["email"]["value"] . " already exist.";
         }

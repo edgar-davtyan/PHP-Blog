@@ -4,9 +4,9 @@
         ?>
         <article class="post">
             <div class="post-thumb">
-                <a href="<?= $articles["link"] ?>"><img src="<?=$articles["img"]?>" alt=""></a>
+                <a href="<?= $articles["url"] ?>"><img src="<?=$articles["image"]?>" alt=""></a>
 
-                <a href="<?= $articles["link"] ?>" class="post-thumb-overlay text-center">
+                <a href="<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
                     <div class="text-uppercase text-center">View Post</div>
                 </a>
             </div>
@@ -14,7 +14,7 @@
                 <header class="entry-header text-center text-uppercase">
                     <h6><a href="#"><?=$articles["category"]?></a></h6>
 
-                    <h1 class="entry-title"><a href="<?= $articles["link"] ?>"><?=$articles["title"]?></a></h1>
+                    <h1 class="entry-title"><a href="<?= $articles["url"] ?>"><?=$articles["title"]?></a></h1>
 
 
                 </header>
@@ -22,7 +22,7 @@
                     <p><?=$articles["text"]?></p>
 
                     <div class="btn-continue-reading text-center text-uppercase">
-                        <a href="<?= $articles["link"] ?>" class="more-link">Continue Reading</a>
+                        <a href="<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
                     </div>
                 </div>
                 <div class="social-share">
