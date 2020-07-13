@@ -1,6 +1,6 @@
 <div class="col-md-8">
     <?php
-    foreach ($data as $articles) {
+    foreach ($data as $articles){
         ?>
         <article class="post">
             <div class="post-thumb">

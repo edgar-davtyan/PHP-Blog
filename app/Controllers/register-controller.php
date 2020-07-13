@@ -60,9 +60,9 @@ $date = validateRegister();
 
 if (!areThereErrors($date)) {
     $res = addNewUsers($date["name"]["value"], $date["email"]["value"], $date["password"]["value"]);
-    print_r($res);
     if (!$res) {
         $err = mysqli_error($conn);
+        var_dump($err);
         if ($err == "Duplicate entry '".$date["email"]["value"]."' for key 'email'") {
             $date["authorization"]["error-message"] = "User with email " . $date["email"]["value"] . " already exist.";
         }

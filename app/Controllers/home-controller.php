@@ -1,5 +1,5 @@
 <?php
-$data = mysqli_fetch_all(getALLBlogPosts());
+$data = mysqli_fetch_all(getALLBlogPosts() , MYSQLI_ASSOC);
 
 function formatDate($data)
 {
