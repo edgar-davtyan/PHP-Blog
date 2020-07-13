@@ -1,10 +1,10 @@
 <div class="col-md-8">
     <?php
-    foreach ($data as $articles){
+    foreach ($data as $articles) {
         ?>
         <article class="post">
             <div class="post-thumb">
-                <a href="<?= $articles["url"] ?>"><img src="<?=$articles["image"]?>" alt=""></a>
+                <a href="<?= $articles["url"] ?>"><img src="<?= $articles["image"] ?>" alt=""></a>
 
                 <a href="<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
                     <div class="text-uppercase text-center">View Post</div>
@@ -12,21 +12,41 @@
             </div>
             <div class="post-content">
                 <header class="entry-header text-center text-uppercase">
-                    <h6><a href="#"><?=$articles["category"]?></a></h6>
+                    <?php
+                    $cats = explode(",", $articles["category"]);
+                    ?>
+                    <h6>
+                        <?php
+                        foreach ($cats as $ind => $cat) {
+                            $cat = explode("=", $cat)
+                            ?>
+                            <a href="?p=posts&category=<? $cat[0] ?>">
+                                <?= $cat[1]; ?>
+                                <?php
+                                if ($ind != count($cats) -1){
+                                    echo ",";
+                                }
+                                ?>
+                            </a>
+                            <?php
+                        }
+                        ?>
+                    </h6>
 
-                    <h1 class="entry-title"><a href="<?= $articles["url"] ?>"><?=$articles["title"]?></a></h1>
+                    <h1 class="entry-title"><a href="<?= $articles["url"] ?>"><?= $articles["title"] ?></a></h1>
 
 
                 </header>
                 <div class="entry-content">
-                    <p><?=$articles["text"]?></p>
+                    <p><?= $articles["text"] ?></p>
 
                     <div class="btn-continue-reading text-center text-uppercase">
                         <a href="<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
                     </div>
                 </div>
                 <div class="social-share">
-                    <span class="social-share-title pull-left text-capitalize">By <a href="#"><?= $articles["author"] ?></a> On <?= $articles["date"] ?> </span>
+                    <span class="social-share-title pull-left text-capitalize">By <a
+                                href="#"><?= $articles["author"] ?></a> On <?= $articles["date"] ?> </span>
                     <ul class="text-center pull-right">
                         <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>

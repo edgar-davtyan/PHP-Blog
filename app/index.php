@@ -6,6 +6,7 @@ if (!empty($_GET) && !empty($_GET["p"])) {
     $page = $_GET["p"];
 }
 require("models/model.php");
+require ("Controllers/controller.php");
 require('templates/header.php');
 if ($page == "") {
     require('templates/home.php');
