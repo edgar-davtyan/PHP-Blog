@@ -3,6 +3,7 @@
     <div class="leave-comment mr0"><!--leave comment-->
 
         <h3 class="text-uppercase">Register</h3>
+        <?= (!empty($date["authorization"]["error-message"]) ? "<p class='warning-message-reg'>" . $date["authorization"]["error-message"] . "</p>" : "") ?>
         <br>
         <form class="form-horizontal contact-form" role="form" method="post">
             <div class="form-group">
