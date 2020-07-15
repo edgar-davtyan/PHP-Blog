@@ -9,7 +9,6 @@ if (!$conn) {
     die("Connected failed:" . mysqli_connect_error());
 }
 
-
 function getCategories()
 {
     global $conn;
