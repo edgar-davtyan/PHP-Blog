@@ -4,9 +4,9 @@
         ?>
         <article class="post">
             <div class="post-thumb">
-                <a href="<?= $articles["url"] ?>"><img src="<?= $articles["image"] ?>" alt=""></a>
+                <a href="?p=post&url<?= $articles["url"] ?>"><img src="<?= $articles["image"] ?>" alt=""></a>
 
-                <a href="<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
+                <a href="?p=post&url<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
                     <div class="text-uppercase text-center">View Post</div>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                         ?>
                     </h6>
 
-                    <h1 class="entry-title"><a href="<?= $articles["url"] ?>"><?= $articles["title"] ?></a></h1>
+                    <h1 class="entry-title"><a href="?p=post&url<?= $articles["url"] ?>"><?= $articles["title"] ?></a></h1>
 
 
                 </header>
@@ -41,7 +41,7 @@
                     <p><?= $articles["text"] ?></p>
 
                     <div class="btn-continue-reading text-center text-uppercase">
-                        <a href="<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
+                        <a href="?p=post&url<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
                     </div>
                 </div>
                 <div class="social-share">
@@ -62,10 +62,15 @@
     }
     ?>
     <ul class="pagination">
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+        <?php
+        for ($i = 1; $i<=$pageCount; $i++){
+            ?>
+            <li <?=($currentPage == $i)? 'class="active"': ""?>>
+                <a href="?p=home&page=<?=$i?>"><?=$i?></a>
+            </li>
+            <?php
+        }
+        ?>
+        <li><a href="?p=home&page<?=$currentPage + 1?>"><i class="fa fa-angle-double-right"></i></a></li>
     </ul>
 </div>
