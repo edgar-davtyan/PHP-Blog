@@ -1,8 +1,10 @@
 <?php
 $limit = 5;
-$data = mysqli_fetch_all(getALLBlogPosts($limit, $offset), MYSQLI_ASSOC);
-$offset = (($currentPage - 1) * $limit);
 $currentPage = (!empty($_GET["page"])) ? intval($_GET["page"]) : 1;
+$offset = (($currentPage - 1) * $limit);
+$data = mysqli_fetch_all(getALLBlogPosts($limit, $offset), MYSQLI_ASSOC);
+
+
 
 function formatDate($data)
 {

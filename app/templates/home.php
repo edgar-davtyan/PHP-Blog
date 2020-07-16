@@ -4,9 +4,9 @@
         ?>
         <article class="post">
             <div class="post-thumb">
-                <a href="?p=post&url<?= $articles["url"] ?>"><img src="<?= $articles["image"] ?>" alt=""></a>
+                <a href="?p=post&url=<?= $articles["url"] ?>"><img src="<?= $articles["image"] ?>" alt=""></a>
 
-                <a href="?p=post&url<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
+                <a href="?p=post&url=<?= $articles["url"] ?>" class="post-thumb-overlay text-center">
                     <div class="text-uppercase text-center">View Post</div>
                 </a>
             </div>
@@ -23,7 +23,7 @@
                             <a href="?p=posts&category=<? $cat[0] ?>">
                                 <?= $cat[1]; ?>
                                 <?php
-                                if ($ind != count($cats) -1){
+                                if ($ind != count($cats) - 1) {
                                     echo ",";
                                 }
                                 ?>
@@ -33,7 +33,8 @@
                         ?>
                     </h6>
 
-                    <h1 class="entry-title"><a href="?p=post&url<?= $articles["url"] ?>"><?= $articles["title"] ?></a></h1>
+                    <h1 class="entry-title"><a href="?p=post&url=<?= $articles["url"] ?>"><?= $articles["title"] ?></a>
+                    </h1>
 
 
                 </header>
@@ -41,7 +42,7 @@
                     <p><?= $articles["text"] ?></p>
 
                     <div class="btn-continue-reading text-center text-uppercase">
-                        <a href="?p=post&url<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
+                        <a href="?p=post&url=<?= $articles["url"] ?>" class="more-link">Continue Reading</a>
                     </div>
                 </div>
                 <div class="social-share">
@@ -60,17 +61,29 @@
 
         <?php
     }
-    ?>
-    <ul class="pagination">
-        <?php
-        for ($i = 1; $i<=$pageCount; $i++){
-            ?>
-            <li <?=($currentPage == $i)? 'class="active"': ""?>>
-                <a href="?p=home&page=<?=$i?>"><?=$i?></a>
-            </li>
-            <?php
-        }
+    if ($pageCount > 1) {
         ?>
-        <li><a href="?p=home&page<?=$currentPage + 1?>"><i class="fa fa-angle-double-right"></i></a></li>
-    </ul>
+        <ul class="pagination">
+            <?php
+            for ($i = 1; $i <= $pageCount; $i++) {
+                ?>
+                <li <?= ($currentPage == $i) ? 'class="active"' : "" ?>>
+                    <a href="?p=home&page=<?= $i ?>"><?= $i ?></a>
+                </li>
+                <?php
+            }
+            ?>
+            <?php
+            if ($currentPage < $pageCount) {
+                ?>
+                <li><a href="?p=home&page=<?= $currentPage + 1 ?>"><i class="fa fa-angle-double-right"></i></a></li>
+                <?php
+            }
+            ?>
+        </ul>
+        <?php
+    }
+    ?>
+
+
 </div>

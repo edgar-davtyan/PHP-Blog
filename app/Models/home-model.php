@@ -8,8 +8,7 @@ ON blog_posts.id = blog_post_id JOIN categories
 ON category_id = categories.id
 WHERE isActive =1
 GROUP BY blog_posts.id
-LIMIT $limit OFFSET = $offset
-";
+LIMIT $limit OFFSET  $offset";
     $ress = mysqli_query($conn, $sql);
     return $ress;
 }
