@@ -1,4 +1,8 @@
 <?php
+if (!empty($_SESSION["userId"])) {
+    session_destroy();
+    header("Location: ?" . $_SERVER["QUERY_STRING"]);
+}
 function validateRegister()
 {
     $date = [
@@ -63,10 +67,10 @@ if (!areThereErrors($date)) {
     if (!$res) {
         $err = mysqli_error($conn);
         var_dump($err);
-        if ($err == "Duplicate entry '".$date["email"]["value"]."' for key 'email'") {
+        if ($err == "Duplicate entry '" . $date["email"]["value"] . "' for key 'email'") {
             $date["authorization"]["error-message"] = "User with email " . $date["email"]["value"] . " already exist.";
         }
-    }else{
+    } else {
         header("Location:?p=login");
     }
 }

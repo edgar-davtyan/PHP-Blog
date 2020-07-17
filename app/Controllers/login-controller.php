@@ -1,5 +1,9 @@
 <?php
-
+session_destroy();
+if (!empty($_SESSION["userId"])) {
+    session_destroy();
+    header("Location: ?" . $_SERVER["QUERY_STRING"]);
+}
 function validateLogin()
 {
     $date = [

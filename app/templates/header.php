@@ -61,7 +61,7 @@ $title = "Home";
 
                 <ul class="nav navbar-nav text-uppercase pull-right">
                     <?php
-                    $isAutch = (!empty($_COOKIE["isLoggedIn"])? true : false);
+                    $isAutch = (!empty($_SESSION["userId"]) ? true : false);
                     if ($isAutch) {
                         ?>
                         <li><a href="?p=profile">My profile</a></li>

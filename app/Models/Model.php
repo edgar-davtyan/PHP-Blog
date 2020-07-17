@@ -1,4 +1,7 @@
 <?php
+if (!MYVAR || MYVAR !== "myvalue"){
+    exit("YOU CAN'T HACK ME!");
+}
 $servername = "localhost";
 $username = "root";
 $password = "";
