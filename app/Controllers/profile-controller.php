@@ -8,7 +8,7 @@ $data = getUserInfo($_SESSION["userId"]);
 if (!$data) {
     header("Location: ?p=login");
 }
-$data = mysqli_fetch_array($data);
+$data = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
 
 function validateForm()
@@ -78,8 +78,8 @@ function areThereErrors($data)
 function saveUserImage($tmp)
 {
     $imageName = time() * 1000;
-    if (move_uploaded_file($tmp, "app/assets/images/users/$imageName.jpg")) {
-        return "$imageName . jpg";
+    if (move_uploaded_file($tmp, "assets/images/users/$imageName.jpg")) {
+        return "$imageName.jpg";
     }
     return false;
 }
@@ -87,15 +87,15 @@ function saveUserImage($tmp)
 
 if (!areThereErrors($formData)) {
     $imgRes = saveUserImage($formData["image"]["value"]);
-    if ($imgRes){
-       $r = updateUserInfo([
-           "id" => $_SESSION["userId"],
-           "name" => $formData["name"]["value"],
-           "email" => $formData["email"]["value"],
-           "image" => $imgRes,
+    if ($imgRes) {
+        $r = updateUserInfo([
+            "id" => $_SESSION["userId"],
+            "name" => $formData["name"]["value"],
+            "email" => $formData["email"]["value"],
+            "image" => $imgRes,
         ]);
-       if ($r){
-           header("Location: ?p=profile");
-       }
+        if ($r) {
+            header("Location: ?p=profile");
+        }
     }
 }
