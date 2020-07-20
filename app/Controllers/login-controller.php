@@ -1,5 +1,8 @@
 <?php
-
+if (!empty($_SESSION["userId"])) {
+    session_destroy();
+    header("Location: ?" . $_SERVER["QUERY_STRING"]);
+}
 function validateLogin()
 {
     $date = [
@@ -34,7 +37,7 @@ function validateLogin()
         } else {
             if (password_verify($_POST["password"], $userDate[0]["password"])) {
                 setcookie("isLoggedIn", true, strtotime("+2 days"));
-                $_SESSION["userID"] = $userDate[0]["id"];
+                $_SESSION["userId"] = $userDate[0]["id"];
                 header("Location:?p=Profile");
             }else{
                 $date["authorization"]["error-message"] = "Email or Password is not correct";

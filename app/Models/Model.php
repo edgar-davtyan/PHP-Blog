@@ -1,4 +1,7 @@
 <?php
+if (!MYVAR || MYVAR !== "myvalue"){
+    exit("YOU CAN'T HACK ME!");
+}
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,7 +11,6 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connected failed:" . mysqli_connect_error());
 }
-
 
 function getCategories()
 {
